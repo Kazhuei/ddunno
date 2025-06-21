@@ -118,7 +118,7 @@
   <button class="note-btn" onclick="showModal()">A Note Just for You 💌</button>
   <div class="message" id="messageBox"></div>
 
-  <audio id="bgMusic" autoplay loop></audio>
+  <audio id="bgMusic" autoplay></audio>
 
   <div id="modalOverlay">
     <div id="modalContent">
@@ -144,17 +144,29 @@
       "keep-on-loving-you.mp3"
     ];
 
+    let currentIndex = Math.floor(Math.random() * songs.length);
     const bgMusic = document.getElementById("bgMusic");
-    const chosenSong = songs[Math.floor(Math.random() * songs.length)];
-    bgMusic.src = chosenSong;
-    bgMusic.load();
 
-    // Start music after first click
+    function playSong(index) {
+      bgMusic.src = songs[index];
+      bgMusic.load();
+      bgMusic.play().catch(e => {
+        console.log("Autoplay blocked:", e);
+      });
+    }
+
+    // Start music on first interaction
     const startMusic = () => {
-      bgMusic.play().catch(e => console.log("Autoplay blocked:", e));
-      document.removeEventListener('click', startMusic);
+      playSong(currentIndex);
+      document.removeEventListener("click", startMusic);
     };
-    document.addEventListener('click', startMusic);
+    document.addEventListener("click", startMusic);
+
+    // Play next song when current one ends
+    bgMusic.addEventListener("ended", () => {
+      currentIndex = (currentIndex + 1) % songs.length;
+      playSong(currentIndex);
+    });
 
     const messages = [
       "“I’ve been the archer, I’ve been the prey — who could ever leave me, darling?” – The Archer",
