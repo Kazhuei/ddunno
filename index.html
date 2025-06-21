@@ -106,8 +106,6 @@
 
     audio {
       display: none;
- audio {
-  display: none;
 }
 
 /* ✅ StartButton styling (blurred glass) */
@@ -186,9 +184,9 @@ function playSong(index) {
 // Start music on first interaction
 const startMusic = () => {
   playSong(currentIndex);
+  document.getElementById("startButton").style.display = "none";
   document.removeEventListener("click", startMusic);
 };
-document.addEventListener("click", startMusic);
 
 // Pag natapos ang kanta, mag next
 bgMusic.addEventListener("ended", () => {
