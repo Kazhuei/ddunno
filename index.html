@@ -28,7 +28,7 @@
       margin: 20px auto;
     }
 
-    .btn, .note-btn, .music-btn {
+    .btn, .note-btn {
       background: #ff9aa2;
       color: #000;
       padding: 10px 20px;
@@ -40,7 +40,7 @@
       transition: transform 0.2s ease;
     }
 
-    .btn:hover, .note-btn:hover, .music-btn:hover {
+    .btn:hover, .note-btn:hover {
       transform: scale(1.05);
     }
 
@@ -106,7 +106,34 @@
 
     audio {
       display: none;
-    }
+ audio {
+  display: none;
+}
+
+/* ✅ StartButton styling (blurred glass) */
+#startButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+#startButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
   </style>
 </head>
 <body>
@@ -114,7 +141,7 @@
 
   <canvas id="wave" width="600" height="200"></canvas>
 
-  <button class="music-btn" onclick="startMusic()">▶️ Start Music</button>
+  <button id="startButton" onclick="startMusic()">▶️ Start Music</button>
   <button class="btn" onclick="showMessage()">Show a sweet message</button>
   <button class="note-btn" onclick="showModal()">A Note Just for You 💌</button>
   <div class="message" id="messageBox"></div>
@@ -138,34 +165,36 @@
 
   <script>
     const songs = [
-      "cry.mp3",
-      "dont-let-me-go.mp3",
-      "heavenly.mp3",
-      "k.mp3",
-      "keep-on-loving-you.mp3"
-    ];
-    let currentIndex = Math.floor(Math.random() * songs.length);
-    const bgMusic = document.getElementById("bgMusic");
-    bgMusic.volume = 1;
+  "cry.mp3",
+  "dont-let-me-go.mp3",
+  "heavenly.mp3",
+  "k.mp3",
+  "keep-on-loving-you.mp3"
+];
 
-    function playSong(index) {
-      bgMusic.src = songs[index];
-      bgMusic.play().catch(err => console.log("Playback error:", err));
-    }
+let currentIndex = Math.floor(Math.random() * songs.length);
+const bgMusic = document.getElementById("bgMusic");
 
-    function startMusic() {
-      playSong(currentIndex);
-      document.querySelector('.music-btn').style.display = 'none'; // hide button
-    }
+function playSong(index) {
+  bgMusic.src = songs[index];
+  bgMusic.load();
+  bgMusic.play().catch(e => {
+    console.log("Autoplay blocked:", e);
+  });
+}
 
-    bgMusic.addEventListener("ended", () => {
-      currentIndex = (currentIndex + 1) % songs.length;
-      playSong(currentIndex);
-    });
+// Start music on first interaction
+const startMusic = () => {
+  playSong(currentIndex);
+  document.removeEventListener("click", startMusic);
+};
+document.addEventListener("click", startMusic);
 
-    document.addEventListener("click", () => {
-      if (bgMusic.paused) startMusic();
-    }, { once: true });
+// Pag natapos ang kanta, mag next
+bgMusic.addEventListener("ended", () => {
+  currentIndex = (currentIndex + 1) % songs.length;
+  playSong(currentIndex);
+});
 
     const messages = [
       "“I’ve been the archer, I’ve been the prey — who could ever leave me, darling?” – The Archer",
@@ -200,6 +229,7 @@
       const messageBox = document.getElementById('messageBox');
       messageBox.classList.remove('show');
       messageBox.style.opacity = 0;
+
       setTimeout(() => {
         const random = Math.floor(Math.random() * messages.length);
         messageBox.textContent = messages[random];
@@ -215,13 +245,15 @@
       document.getElementById('modalOverlay').style.display = 'none';
     }
 
-    // Organic pink wave animation
+    // PINK layered soundwave animation
     (function(){
       const c = document.getElementById('wave').getContext('2d');
       let t = 0;
+
       function drawPinkWave() {
         const w = c.canvas.width, h = c.canvas.height;
         c.clearRect(0, 0, w, h);
+
         function drawLayer(freq, amp, alpha, width, hueOffset){
           c.beginPath();
           for(let x=0; x<=w; x++){
@@ -234,12 +266,15 @@
           c.lineWidth = width;
           c.stroke();
         }
+
         drawLayer(0.01, 30, 0.4, 4, 0);
         drawLayer(0.013, 20, 0.6, 3, -10);
         drawLayer(0.017, 10, 0.8, 2, +10);
+
         t += 0.02;
         requestAnimationFrame(drawPinkWave);
       }
+
       drawPinkWave();
     })();
   </script>
