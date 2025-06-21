@@ -1,17 +1,17 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hello</title>
+  <title>For My Love ♥</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      overflow-x: hidden; /* Prevent side scroll */
       background-color: #111;
       font-family: 'Courier New', monospace;
       color: #fff;
+      overflow-x: hidden; /* Prevent horizontal scroll */
     }
 
     body {
@@ -20,7 +20,6 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-      padding-bottom: 100px; /* Extra space at bottom */
     }
 
     h1 {
@@ -116,6 +115,11 @@
     audio {
       display: none;
     }
+
+    /* Hidden image container */
+    #hidden-assets {
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -142,6 +146,13 @@
       <br><br>– from me, always
       <button class="close-btn" onclick="closeModal()">🫶 Got it</button>
     </div>
+  </div>
+
+  <!-- Hidden image section -->
+  <div id="hidden-assets">
+    <img src="photo1.jpg" alt="hidden1" />
+    <img src="photo2.jpg" alt="hidden2" />
+    <img src="photo3.jpg" alt="hidden3" />
   </div>
 
   <script>
@@ -208,6 +219,7 @@
     bgMusic.load();
     bgMusic.play();
 
+    // Organic soundwave animation
     const canvas = document.getElementById('wave');
     const ctx = canvas.getContext('2d');
     let t = 0;
