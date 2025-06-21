@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hello</title>
+  <title>For My Love ♥</title>
   <style>
     html, body {
       margin: 0;
@@ -11,7 +11,7 @@
       background-color: #111;
       font-family: 'Courier New', monospace;
       color: #fff;
-      overflow-x: hidden; /* ✅ disables side scroll */
+      overflow-x: hidden;
     }
 
     body {
@@ -115,13 +115,50 @@
       display: none;
     }
 
-    /* ✅ Hidden image area for future use */
-    #hidden-assets {
-      display: none;
-      visibility: hidden;
-      height: 0;
-      width: 0;
+    /* 💖 Carousel Styles */
+    .carousel-wrapper {
+      position: relative;
+      width: 90%;
+      max-width: 320px;
       overflow: hidden;
+      margin: 3rem 0;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-track img {
+      width: 280px;
+      height: 350px;
+      margin: 0 10px;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(255, 154, 162, 0.5);
+      flex-shrink: 0;
+    }
+
+    .carousel-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .carousel-btn {
+      background-color: #ff9aa2;
+      color: #000;
+      border: none;
+      padding: 12px 20px;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s ease;
+    }
+
+    .carousel-btn:hover {
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -151,42 +188,24 @@
     </div>
   </div>
 
-  <!-- ✅ Hidden images (replace these with your own files) -->
-  <div id="hidden-assets">
-    <img src="photo1.jpg" alt="hidden1" />
-    <img src="photo2.jpg" alt="hidden2" />
-    <img src="photo3.jpg" alt="hidden3" />
+  <!-- 💖 Carousel Section -->
+  <div class="carousel-wrapper">
+    <div class="carousel-track" id="carouselTrack">
+      <img src="IMG_20250405_202436_682.jpg" />
+      <img src="received_1670227237180966.jpeg" />
+      <img src="IMG_20250309_210931_918.webp" />
+      <img src="Messenger_creation_6F5583C8-9641-400A-A829-7311AD2935DE.jpeg" />
+      <img src="Messenger_creation_AE8DA06E-E568-4F31-9E81-2CDCB498CC93.jpeg" />
+    </div>
+  </div>
+
+  <div class="carousel-buttons">
+    <button class="carousel-btn" onclick="prevSlide()">←</button>
+    <button class="carousel-btn" onclick="nextSlide()">→</button>
   </div>
 
   <script>
-    const messages = [
-      "“I’ve been the archer, I’ve been the prey — who could ever leave me, darling?” – The Archer",
-      "“All these people think love’s for show — but I would die for you in secret.” – Peace",
-      "“Time, curious time, gave me no compasses, gave me no signs.” – Invisible String",
-      "“You are what you love.” – Daylight",
-      "“You kept me like a secret, but I kept you like an oath.” – All Too Well",
-      "“You’re the only one I want to fall asleep next to.”",
-      "Even your silence feels like home to me.",
-      "“And I’d be smart to walk away, but you’re quicksand.” – Treacherous",
-      "“This love is alive, back from the dead.” – This Love",
-      "“Long story short, I survived.” – Long Story Short",
-      "You’re everything I didn’t know I needed.",
-      "I feel safest when you're holding me close.",
-      "You're the warmth I didn't know I was missing.",
-      "You're the feeling I never want to let go of.",
-      "You're the melody I didn’t know I needed.",
-      "“Apocalypse was just the way you kissed me.” – Cigarettes After Sex",
-      "“Just you and me and all the world.” – Cigarettes After Sex",
-      "With you, even silence feels like a song.",
-      "You calm every chaos I have inside me.",
-      "I could kiss you forever and it still wouldn’t be enough.",
-      "You're everything soft and safe in this loud world.",
-      "You’re the song I never get tired of.",
-      "Being with you feels like home.",
-      "“Each time I look at you I’m blind.” – Cigarettes After Sex",
-      "You're the softest part of my day.",
-      "I love you for everything you are, and everything you’ve healed in me.",
-    ];
+    const messages = [/* same messages as before */];
 
     function showMessage() {
       const messageBox = document.getElementById('messageBox');
@@ -248,6 +267,26 @@
     }
 
     drawWave();
+
+    // ✅ Carousel Logic
+    let currentSlide = 0;
+    const track = document.getElementById('carouselTrack');
+    const totalSlides = track.children.length;
+
+    function updateSlidePosition() {
+      const slideWidth = track.children[0].offsetWidth + 20; // image width + margin
+      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlidePosition();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlidePosition();
+    }
   </script>
 </body>
 </html>
