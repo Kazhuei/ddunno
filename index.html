@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
       background-color: #111;
       font-family: 'Courier New', monospace;
       color: #fff;
-      overflow-x: hidden; /* Prevent horizontal scroll */
+      overflow-x: hidden; /* ✅ disables side scroll */
     }
 
     body {
@@ -51,6 +51,20 @@
       transform: scale(1.05);
     }
 
+    .message {
+      font-size: 1.2rem;
+      color: #f8c8dc;
+      margin-top: 1rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 0 1rem;
+    }
+
+    .message.show {
+      animation: messageFadeIn 0.6s ease-out forwards;
+    }
+
     @keyframes messageFadeIn {
       0% {
         opacity: 0;
@@ -60,21 +74,6 @@
         opacity: 1;
         transform: scale(1);
       }
-    }
-
-    .message {
-      font-size: 1.2rem;
-      color: #f8c8dc;
-      margin-top: 1rem;
-      height: auto;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      padding: 0 1rem;
-    }
-
-    .message.show {
-      animation: messageFadeIn 0.6s ease-out forwards;
     }
 
     #modalOverlay {
@@ -116,9 +115,13 @@
       display: none;
     }
 
-    /* Hidden image container */
+    /* ✅ Hidden image area for future use */
     #hidden-assets {
       display: none;
+      visibility: hidden;
+      height: 0;
+      width: 0;
+      overflow: hidden;
     }
   </style>
 </head>
@@ -148,7 +151,7 @@
     </div>
   </div>
 
-  <!-- Hidden image section -->
+  <!-- ✅ Hidden images (replace these with your own files) -->
   <div id="hidden-assets">
     <img src="photo1.jpg" alt="hidden1" />
     <img src="photo2.jpg" alt="hidden2" />
@@ -219,7 +222,6 @@
     bgMusic.load();
     bgMusic.play();
 
-    // Organic soundwave animation
     const canvas = document.getElementById('wave');
     const ctx = canvas.getContext('2d');
     let t = 0;
