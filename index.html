@@ -120,6 +120,38 @@
 
   <audio id="bgMusic" autoplay loop></audio>
 
+<button id="playBtn" class="btn" style="display:none;" onclick="manualPlay()">🔊 Play Music</button>
+
+<script>
+  const songs = [
+    "cry.mp3",
+    "dont-let-me-go.mp3",
+    "heavenly.mp3",
+    "k.mp3",
+    "keep-on-loving-you.mp3"
+  ];
+
+  const bgMusic = document.getElementById("bgMusic");
+  const playBtn = document.getElementById("playBtn");
+  const chosenSong = songs[Math.floor(Math.random() * songs.length)];
+
+  bgMusic.src = chosenSong;
+  bgMusic.load();
+
+  // Try autoplay
+  bgMusic.play().catch(() => {
+    // If autoplay fails (browser policy), show manual button
+    playBtn.style.display = "inline-block";
+    console.log("Autoplay blocked. Showing play button.");
+  });
+
+  function manualPlay() {
+    bgMusic.play();
+    playBtn.style.display = "none";
+  }
+</script>
+
+
   <div id="modalOverlay">
     <div id="modalContent">
       Love, I know we don’t always say the deepest things out loud, but I hope you feel them every day.
