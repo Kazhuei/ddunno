@@ -3,7 +3,7 @@
 <head>  
   <meta charset="UTF-8" />  
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
-  <title>For My Love ♥</title>  
+  <title>Hello</title>  
   <style>  
     html, body {  
       margin: 0;  
@@ -259,6 +259,7 @@
     const seekBar = document.getElementById("seekBar");
 
     const songs = [
+      { file: "sweet.mp3", name: "Sweet" },
       { file: "cry.mp3", name: "Cry" },
       { file: "dont-let-me-go.mp3", name: "Don't Let Me Go" },
       { file: "heavenly.mp3", name: "Heavenly" },
@@ -277,10 +278,10 @@
     playPauseBtn.addEventListener("click", () => {
       if (isPlaying) {
         bgMusic.pause();
-        playPauseBtn.textContent = "Play ▶️";
+        playPauseBtn.textContent = "Play";
       } else {
         bgMusic.play();
-        playPauseBtn.textContent = "Pause ⏸️";
+        playPauseBtn.textContent = "Pause";
       }
       isPlaying = !isPlaying;
     });
