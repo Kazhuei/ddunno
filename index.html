@@ -3,29 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For My Love ♥</title>
+  <title>Hello</title>
   <style>
-    body {
+    html, body {
       margin: 0;
+      padding: 0;
+      overflow-x: hidden; /* Prevent side scroll */
       background-color: #111;
       font-family: 'Courier New', monospace;
       color: #fff;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding-bottom: 100px; /* Extra space at bottom */
     }
 
     h1 {
+      margin-top: 2rem;
       margin-bottom: 0.5rem;
       color: #ff9aa2;
+      text-align: center;
     }
 
     canvas {
       display: block;
       margin: 20px auto;
+      max-width: 100%;
     }
 
     .btn, .note-btn {
@@ -63,6 +71,7 @@
       text-align: center;
       opacity: 0;
       transition: opacity 0.3s ease;
+      padding: 0 1rem;
     }
 
     .message.show {
@@ -199,7 +208,6 @@
     bgMusic.load();
     bgMusic.play();
 
-    // Organic soundwave animation
     const canvas = document.getElementById('wave');
     const ctx = canvas.getContext('2d');
     let t = 0;
