@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hello</title>
@@ -17,133 +18,140 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-    }
-    h1 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      color: #ff9aa2;
-      text-align: center;
-    }
-    canvas {
-      display: block;
-      margin: 20px auto;
-      max-width: 100%;
-    }
-    .btn, .note-btn {
-      background: #ff9aa2;
-      color: #000;
-      padding: 10px 20px;
-      margin: 0.5rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .btn:hover, .note-btn:hover {
-      transform: scale(1.05);
-    }
-    .message {
-      font-size: 1.2rem;
-      color: #f8c8dc;
-      margin-top: 1rem;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      padding: 0 1rem;
-    }
-    .message.show {
-      animation: messageFadeIn 0.6s ease-out forwards;
-    }
-    @keyframes messageFadeIn {
-      0% { opacity: 0; transform: scale(0.95); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-    .music-player {
-      margin-top: 2rem;
-      background: #1a1a1a;
-      border-radius: 16px;
-      padding: 1rem;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(255, 154, 162, 0.3);
-      text-align: center;
-      position: relative;
-    }
-    .music-title {
-      font-size: 1rem;
-      color: #ff9aa2;
-      margin-bottom: 0.5rem;
-    }
-    .controls button {
-      background-color: transparent;
-      border: none;
-      color: #ff9aa2;
-      border-radius: 20px;
-      padding: 0.5rem 1rem;
-      margin: 0 5px;
-      font-weight: bold;
-      cursor: pointer;
-      font-size: 1.2rem;
-    }
-    .progress-container {
-      width: 100%;
-      background: #444;
-      height: 6px;
-      border-radius: 3px;
-      margin-top: 1rem;
-      cursor: pointer;
-    }
-    .progress {
-      height: 100%;
-      background: #ff9aa2;
-      width: 0%;
-      border-radius: 3px;
-    }
-    .lyrics-box {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #f8c8dc;
-      animation: fadeLyrics 1s ease-in-out;
-    }
-    @keyframes fadeLyrics {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    }h1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #ff9aa2;
+  text-align: center;
+}
+
+canvas {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+}
+
+.btn, .note-btn {
+  background: #ff9aa2;
+  color: #000;
+  padding: 10px 20px;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover, .note-btn:hover {
+  transform: scale(1.05);
+}
+
+.message {
+  font-size: 1.2rem;
+  color: #f8c8dc;
+  margin-top: 1rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 0 1rem;
+}
+
+.message.show {
+  animation: messageFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes messageFadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.music-player {
+  margin-top: 2rem;
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 1rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(255, 154, 162, 0.3);
+  text-align: center;
+}
+
+.music-title {
+  font-size: 1rem;
+  color: #ff9aa2;
+  margin-bottom: 0.5rem;
+}
+
+.controls button {
+  background: transparent;
+  border: 2px solid #ff9aa2;
+  color: #ff9aa2;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.progress-container {
+  width: 100%;
+  background: #444;
+  height: 6px;
+  border-radius: 3px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.progress {
+  height: 100%;
+  background: #ff9aa2;
+  width: 0%;
+  border-radius: 3px;
+}
+
+.lyrics {
+  color: #f8c8dc;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+  max-height: 200px;
+  overflow: auto;
+}
+
+.highlight {
+  color: #fff;
+  font-weight: bold;
+}
+
   </style>
 </head>
 <body>
   <h1>hi baby ♥</h1>
-  <canvas id="wave" width="600" height="200"></canvas>
-  <div class="music-player">
-    <div class="music-title" id="trackTitle">Loading...</div>
+  <canvas id="wave" width="600" height="200"></canvas>  <div class="music-player">
+    <div class="music-title" id="trackTitle">Sweet</div>
     <div class="controls">
-      <button onclick="prevTrack()">◀</button>
-      <button onclick="togglePlayPause()" id="playPauseBtn">❚❚</button>
-      <button onclick="nextTrack()">▶</button>
+      <button onclick="togglePlayPause()" id="playPauseBtn">Pause</button>
     </div>
     <div class="progress-container" onclick="seek(event)">
       <div class="progress" id="progress"></div>
     </div>
-    <div class="lyrics-box" id="lyricsBox"></div>
-  </div>
-  <button class="btn" onclick="showMessage()">Show a sweet message</button>
-  <button class="note-btn" onclick="showModal()">A Note Just for You 💌</button>
+    <div class="lyrics" id="lyricsBox"></div>
+  </div><button class="btn" onclick="showMessage()">Show a sweet message</button> <button class="note-btn" onclick="showModal()">A Note Just for You</button>
+
   <div class="message" id="messageBox"></div>
-  <audio id="audio" autoplay></audio>
-  <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
+  <audio id="audio" autoplay></audio>  <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
     <div id="modalContent" style="background:#fff; color:#000; padding:1rem; border-radius:12px; max-width:400px; text-align:center;">
       Love, I know we don’t always say the deepest things out loud, but I hope you feel them every day.
       You calm parts of me I didn’t even know were restless.
-      <br><br>
+      
       Being with you feels like how a song settles in your chest when you hear it for the first time and somehow already know the words.
-      <br><br>
+      
       I don’t need big gestures, or what, I just need you. Even your silence feels like home to me.
       <br><br>– from me, always
-      <br><br><button onclick="closeModal()" class="close-btn">🫶 Got it</button>
+      <br><br><button onclick="closeModal()" class="close-btn">Got it</button>
     </div>
-  </div>
-  <script>
+  </div>  <script>
     const messages = [
       "“I’ve been the archer, I’ve been the prey — who could ever leave me, darling?” – The Archer",
       "“All these people think love’s for show — but I would die for you in secret.” – Peace",
@@ -162,113 +170,120 @@
       "You're everything soft and safe in this loud world.",
       "Being with you feels like home.",
       "“Each time I look at you I’m blind.” – Cigarettes After Sex",
-      "I love you for everything you are, and everything you’ve healed in me.",
-      "“You’re the only thing I’ll ever love.” – This Is Me Trying",
-      "“If I could never give you peace.” – Peace",
-      "“You're still all over me like a wine-stained dress I can't wear anymore.” – Clean",
-      "“I was enchanted to meet you.” – Enchanted",
-      "“Love you to the moon and to Saturn.” – Seven",
-      "“It’s just you and me, there’s nothing like this.” – King of My Heart",
-      "“You are the best thing that’s ever been mine.” – Mine",
-      "“I don't wanna live forever, 'cause I know I'll be living in vain.” – Zayn & Taylor",
-      "“Nothing's gonna hurt you, baby.” – Cigarettes After Sex",
-      "“Just you and me and all the world.” – Cigarettes After Sex",
-      "“Touch me with your skin, it's softer than anything.” – Cigarettes After Sex"
-    ];function showMessage() {
-  const msg = document.getElementById("messageBox");
-  msg.textContent = messages[Math.floor(Math.random() * messages.length)];
-  msg.classList.add("show");
-}
+      "I love you for everything you are, and everything you’ve healed in me."
+    ];
 
-function showModal() {
-  document.getElementById("modalOverlay").style.display = "flex";
-}
+    function showMessage() {
+      const msg = document.getElementById("messageBox");
+      msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+      msg.classList.add("show");
+    }
 
-function closeModal() {
-  document.getElementById("modalOverlay").style.display = "none";
-}
+    function showModal() {
+      document.getElementById("modalOverlay").style.display = "flex";
+    }
 
-const tracks = [
-  { file: "cry.mp3", title: "Cry", lyrics: "I tried to hold on, but tears fall like rain..." },
-  { file: "dont-let-me-go.mp3", title: "Don't Let Me Go", lyrics: "Hold me like the sky holds the stars..." },
-  { file: "heavenly.mp3", title: "Heavenly", lyrics: "You're my peace in the loudest world." },
-  { file: "sweet.mp3", title: "Sweet", lyrics: "You taste like midnight kisses." }
-];
+    function closeModal() {
+      document.getElementById("modalOverlay").style.display = "none";
+    }
 
-let current = 0;
-const audio = document.getElementById("audio");
-const title = document.getElementById("trackTitle");
-const lyricsBox = document.getElementById("lyricsBox");
-const progress = document.getElementById("progress");
-const btn = document.getElementById("playPauseBtn");
+    const lyricsLines = [
+      "Watching the video that you sent me",
+      "The one where you're showering with wet hair dripping",
+      "You know that I'm obsessed with your body",
+      "But it's the way you smile that does it for me",
+      "It's so sweet, knowing that you love me",
+      "Though we don't need to say it to each other, sweet",
+      "Knowing that I love you, and running my fingers through your hair",
+      "It's so sweet",
+      "Watching the video where you're lying",
+      "In your red lingerie ten times nightly",
+      "You know I think your skin's the perfect color",
+      "But it's always your eyes that pull me under",
+      "It's so sweet knowing that you love me",
+      "Though we don't need to say it to each other, sweet",
+      "Knowing that I love you, and running my fingers through your hair",
+      "It's so sweet",
+      "And I would gladly break it",
+      "I would gladly break my heart for you",
+      "It's so sweet knowing that you love me",
+      "Though we don't need to say it to each other, sweet",
+      "Knowing that I love you, and running my fingers through your hair",
+      "It's so sweet"
+    ];
 
-function loadTrack(i) {
-  audio.src = tracks[i].file;
-  title.textContent = tracks[i].title;
-  lyricsBox.textContent = tracks[i].lyrics;
-  audio.load();
-  audio.play();
-  btn.textContent = "❚❚";
-}
+    const audio = document.getElementById("audio");
+    const btn = document.getElementById("playPauseBtn");
+    const progress = document.getElementById("progress");
+    const lyricsBox = document.getElementById("lyricsBox");
 
-function togglePlayPause() {
-  if (audio.paused) {
+    let currentLine = 0;
+    let isPlaying = true;
+    audio.src = "sweet.mp3";
+    audio.load();
     audio.play();
-    btn.textContent = "❚❚";
-  } else {
-    audio.pause();
-    btn.textContent = "▶";
-  }
-}
 
-function nextTrack() {
-  current = (current + 1) % tracks.length;
-  loadTrack(current);
-}
+    function togglePlayPause() {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "Pause";
+        isPlaying = true;
+      } else {
+        audio.pause();
+        btn.textContent = "Play";
+        isPlaying = false;
+      }
+    }
 
-function prevTrack() {
-  current = (current - 1 + tracks.length) % tracks.length;
-  loadTrack(current);
-}
+    function seek(e) {
+      const width = e.currentTarget.clientWidth;
+      const clickX = e.offsetX;
+      const duration = audio.duration;
+      audio.currentTime = (clickX / width) * duration;
+    }
 
-function seek(e) {
-  const width = e.currentTarget.clientWidth;
-  const clickX = e.offsetX;
-  const duration = audio.duration;
-  audio.currentTime = (clickX / width) * duration;
-}
+    audio.ontimeupdate = () => {
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = percent + "%";
 
-audio.ontimeupdate = () => {
-  const percent = (audio.currentTime / audio.duration) * 100;
-  progress.style.width = percent + "%";
-}
+      const index = Math.floor((audio.currentTime / audio.duration) * lyricsLines.length);
+      if (index !== currentLine) {
+        currentLine = index;
+        updateLyrics(currentLine);
+      }
+    };
 
-loadTrack(current);
+    function updateLyrics(index) {
+      lyricsBox.innerHTML = lyricsLines.map((line, i) =>
+        `<div class="${i === index ? 'highlight' : ''}">${line}</div>`
+      ).join("");
+    }
 
-const canvas = document.getElementById("wave");
-const ctx = canvas.getContext("2d");
-let t = 0;
+    const canvas = document.getElementById("wave");
+    const ctx = canvas.getContext("2d");
+    let t = 0;
 
-function drawWave() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.beginPath();
-  ctx.moveTo(0, canvas.height / 2);
-  for (let x = 0; x < canvas.width; x++) {
-    const y = canvas.height / 2 +
-      Math.sin(x * 0.01 + t) * 20 +
-      Math.sin(x * 0.02 + t * 1.5) * 15 +
-      Math.sin(x * 0.03 + t * 0.8) * 10;
-    ctx.lineTo(x, y);
-  }
-  ctx.strokeStyle = '#ff9aa2';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-  t += 0.02;
-  requestAnimationFrame(drawWave);
-}
+    function drawWave() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.height / 2);
 
-drawWave();
+      for (let x = 0; x < canvas.width; x++) {
+        const y = canvas.height / 2 +
+          Math.sin(x * 0.01 + t) * 20 +
+          Math.sin(x * 0.02 + t * 1.5) * 15 +
+          Math.sin(x * 0.03 + t * 0.8) * 10;
+        ctx.lineTo(x, y);
+      }
 
-  </script>
-</body>
+      ctx.strokeStyle = '#ff9aa2';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      t += 0.02;
+      requestAnimationFrame(drawWave);
+    }
+
+    drawWave();
+  </script></body>
 </html>
