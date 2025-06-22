@@ -18,138 +18,112 @@
       align-items: center;
       justify-content: flex-start;
       min-height: 100vh;
-    }h1 {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  color: #ff9aa2;
-  text-align: center;
-}
-
-canvas {
-  display: block;
-  margin: 20px auto;
-  max-width: 100%;
-}
-
-.btn, .note-btn {
-  background: #ff9aa2;
-  color: #000;
-  padding: 10px 20px;
-  margin: 0.5rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.btn:hover, .note-btn:hover {
-  transform: scale(1.05);
-}
-
-.message {
-  font-size: 1.2rem;
-  color: #f8c8dc;
-  margin-top: 1rem;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  padding: 0 1rem;
-}
-
-.message.show {
-  animation: messageFadeIn 0.6s ease-out forwards;
-}
-
-@keyframes messageFadeIn {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-.music-player {
-  margin-top: 2rem;
-  background: #1a1a1a;
-  border-radius: 16px;
-  padding: 1rem;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 0 15px rgba(255, 154, 162, 0.3);
-  text-align: center;
-}
-
-.music-title {
-  font-size: 1rem;
-  color: #ff9aa2;
-  margin-bottom: 0.5rem;
-}
-
-.controls button {
-  background: transparent;
-  border: 2px solid #ff9aa2;
-  color: #ff9aa2;
-  border-radius: 4px;
-  padding: 0.3rem 0.6rem;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.progress-container {
-  width: 100%;
-  background: #444;
-  height: 6px;
-  border-radius: 3px;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-
-.progress {
-  height: 100%;
-  background: #ff9aa2;
-  width: 0%;
-  border-radius: 3px;
-}
-
-.lyrics {
-  color: #f8c8dc;
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  text-align: center;
-  max-height: 200px;
-  overflow: auto;
-}
-
-.highlight {
-  color: #fff;
-  font-weight: bold;
-}
-
+    }
+    h1 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #ff9aa2;
+      text-align: center;
+    }
+    canvas {
+      display: block;
+      margin: 20px auto;
+      max-width: 100%;
+    }
+    .btn, .note-btn {
+      background: #ff9aa2;
+      color: #000;
+      padding: 10px 20px;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .btn:hover, .note-btn:hover {
+      transform: scale(1.05);
+    }
+    .message {
+      font-size: 1.2rem;
+      color: #f8c8dc;
+      margin-top: 1rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 0 1rem;
+    }
+    .message.show {
+      animation: messageFadeIn 0.6s ease-out forwards;
+    }
+    @keyframes messageFadeIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    .music-player {
+      margin-top: 2rem;
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 1rem;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(255, 154, 162, 0.3);
+      text-align: center;
+    }
+    .controls {
+      margin: 1rem 0;
+    }
+    .controls button {
+      background-color: transparent;
+      border: 2px solid #ff9aa2;
+      color: #ff9aa2;
+      border-radius: 50%;
+      padding: 0.5rem 1rem;
+      margin: 0 10px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .controls button:hover {
+      background-color: #ff9aa2;
+      color: #000;
+    }
+    .lyrics {
+      margin-top: 1rem;
+      text-align: center;
+      color: #f8c8dc;
+      min-height: 100px;
+      line-height: 1.6;
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <h1>hi baby ♥</h1>
   <canvas id="wave" width="600" height="200"></canvas>  <div class="music-player">
-    <div class="music-title" id="trackTitle">Sweet</div>
     <div class="controls">
-      <button onclick="togglePlayPause()" id="playPauseBtn">Pause</button>
+      <button onclick="prevTrack()">❮</button>
+      <button onclick="togglePlayPause()" id="playPauseBtn">❚❚</button>
+      <button onclick="nextTrack()">❯</button>
     </div>
-    <div class="progress-container" onclick="seek(event)">
-      <div class="progress" id="progress"></div>
-    </div>
+    <div class="music-title" id="trackTitle">Loading...</div>
     <div class="lyrics" id="lyricsBox"></div>
-  </div><button class="btn" onclick="showMessage()">Show a sweet message</button> <button class="note-btn" onclick="showModal()">A Note Just for You</button>
+  </div><button class="btn" onclick="showMessage()">Show a sweet message</button> <button class="note-btn" onclick="showModal()">A Note Just for You 💌</button>
 
   <div class="message" id="messageBox"></div>
   <audio id="audio" autoplay></audio>  <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
     <div id="modalContent" style="background:#fff; color:#000; padding:1rem; border-radius:12px; max-width:400px; text-align:center;">
-      Love, I know we don’t always say the deepest things out loud, but I hope you feel them every day.
-      You calm parts of me I didn’t even know were restless.
-      
-      Being with you feels like how a song settles in your chest when you hear it for the first time and somehow already know the words.
-      
-      I don’t need big gestures, or what, I just need you. Even your silence feels like home to me.
-      <br><br>– from me, always
-      <br><br><button onclick="closeModal()" class="close-btn">Got it</button>
+      Love, I know we don’t always say the deepest things out loud, but I hope you feel them every day.<br><br>
+      You calm parts of me I didn’t even know were restless.<br><br>
+      Being with you feels like how a song settles in your chest when you hear it for the first time and somehow already know the words.<br><br>
+      I don’t need big gestures, or what, I just need you. Even your silence feels like home to me.<br><br>
+      – from me, always
+      <br><br><button onclick="closeModal()" class="close-btn">🫶 Got it</button>
     </div>
   </div>  <script>
     const messages = [
@@ -206,6 +180,8 @@ canvas {
       "It's so sweet",
       "And I would gladly break it",
       "I would gladly break my heart for you",
+      "And I would gladly break it",
+      "I would gladly break my heart for you",
       "It's so sweet knowing that you love me",
       "Though we don't need to say it to each other, sweet",
       "Knowing that I love you, and running my fingers through your hair",
@@ -213,51 +189,49 @@ canvas {
     ];
 
     const audio = document.getElementById("audio");
-    const btn = document.getElementById("playPauseBtn");
-    const progress = document.getElementById("progress");
+    const title = document.getElementById("trackTitle");
     const lyricsBox = document.getElementById("lyricsBox");
+    const btn = document.getElementById("playPauseBtn");
 
     let currentLine = 0;
-    let isPlaying = true;
-    audio.src = "sweet.mp3";
-    audio.load();
-    audio.play();
+
+    function updateLyrics() {
+      if (currentLine < lyricsLines.length) {
+        lyricsBox.textContent = lyricsLines[currentLine];
+        currentLine++;
+      }
+    }
+
+    audio.ontimeupdate = () => {
+      if (Math.floor(audio.currentTime) % 4 === 0) {
+        updateLyrics();
+      }
+    };
 
     function togglePlayPause() {
       if (audio.paused) {
         audio.play();
-        btn.textContent = "Pause";
-        isPlaying = true;
+        btn.textContent = "❚❚";
       } else {
         audio.pause();
-        btn.textContent = "Play";
-        isPlaying = false;
+        btn.textContent = "▶";
       }
     }
 
-    function seek(e) {
-      const width = e.currentTarget.clientWidth;
-      const clickX = e.offsetX;
-      const duration = audio.duration;
-      audio.currentTime = (clickX / width) * duration;
+    function nextTrack() {
+      // Placeholder for next song logic
+      lyricsBox.textContent = "Next track not implemented yet.";
     }
 
-    audio.ontimeupdate = () => {
-      const percent = (audio.currentTime / audio.duration) * 100;
-      progress.style.width = percent + "%";
-
-      const index = Math.floor((audio.currentTime / audio.duration) * lyricsLines.length);
-      if (index !== currentLine) {
-        currentLine = index;
-        updateLyrics(currentLine);
-      }
-    };
-
-    function updateLyrics(index) {
-      lyricsBox.innerHTML = lyricsLines.map((line, i) =>
-        `<div class="${i === index ? 'highlight' : ''}">${line}</div>`
-      ).join("");
+    function prevTrack() {
+      // Placeholder for previous song logic
+      lyricsBox.textContent = "Previous track not implemented yet.";
     }
+
+    title.textContent = "Sweet";
+    audio.src = "sweet.mp3";
+    audio.load();
+    audio.play();
 
     const canvas = document.getElementById("wave");
     const ctx = canvas.getContext("2d");
