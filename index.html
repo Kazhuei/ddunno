@@ -11,158 +11,143 @@
       font-family: 'Courier New', monospace;
       color: #fff;
       overflow-x: hidden;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-    }
-    h1 {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      color: #ff9aa2;
-      text-align: center;
-    }
-    canvas {
-      display: block;
-      margin: 20px auto;
-      max-width: 100%;
-    }
-    .btn, .note-btn {
-      background: #ff9aa2;
-      color: #000;
-      padding: 10px 20px;
-      margin: 0.5rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .btn:hover, .note-btn:hover {
-      transform: scale(1.05);
-    }
-    .message {
-      font-size: 1.2rem;
-      color: #f8c8dc;
-      margin-top: 1rem;
-      text-align: center;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      padding: 0 1rem;
-    }
-    .message.show {
-      animation: messageFadeIn 0.6s ease-out forwards;
-    }
-    @keyframes messageFadeIn {
-      0% { opacity: 0; transform: scale(0.95); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-    .lyrics {
-      color: #ffc9d6;
-      font-size: 0.95rem;
-      margin-top: 1rem;
-      text-align: center;
-      white-space: pre-wrap;
-      animation: fadeIn 1s ease forwards;
-      opacity: 0;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .music-player {
-      margin-top: 2rem;
-      background: #1a1a1a;
-      border-radius: 16px;
-      padding: 1rem;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(255, 154, 162, 0.3);
-      text-align: center;
-    }
-    .music-title {
-      font-size: 1rem;
-      color: #ff9aa2;
-      margin-bottom: 0.5rem;
-    }
-    .controls button {
-      background-color: transparent;
-      border: none;
-      color: #ff9aa2;
-      font-size: 1.5rem;
-      margin: 0 10px;
-      cursor: pointer;
-    }
-    .progress-container {
-      width: 100%;
-      background: #444;
-      height: 6px;
-      border-radius: 3px;
-      margin-top: 1rem;
-      cursor: pointer;
-    }
-    .progress {
-      height: 100%;
-      background: #ff9aa2;
-      width: 0%;
-      border-radius: 3px;
-    }
+    }body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+}
+
+h1 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #ff9aa2;
+  text-align: center;
+}
+
+canvas {
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+}
+
+.btn, .note-btn {
+  background: #ff9aa2;
+  color: #000;
+  padding: 10px 20px;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover, .note-btn:hover {
+  transform: scale(1.05);
+}
+
+.message {
+  font-size: 1.2rem;
+  color: #f8c8dc;
+  margin-top: 1rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 0 1rem;
+}
+
+.message.show {
+  animation: messageFadeIn 0.6s ease-out forwards;
+}
+
+@keyframes messageFadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.music-player {
+  margin-top: 2rem;
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 1rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(255, 154, 162, 0.3);
+  text-align: center;
+}
+
+.music-title {
+  font-size: 1rem;
+  color: #ff9aa2;
+  margin-bottom: 0.5rem;
+}
+
+.controls button {
+  background-color: transparent;
+  border: none;
+  color: #ff9aa2;
+  font-size: 1.5rem;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.progress-container {
+  width: 100%;
+  background: #444;
+  height: 6px;
+  border-radius: 3px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.progress {
+  height: 100%;
+  background: #ff9aa2;
+  width: 0%;
+  border-radius: 3px;
+}
+
+.lyrics-box {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #f8c8dc;
+  max-height: 200px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  transition: opacity 0.3s ease;
+}
+
   </style>
 </head>
 <body>
   <h1>hi baby ♥</h1>
-  <canvas id="wave" width="600" height="200"></canvas>
-  <div class="music-player">
+  <canvas id="wave" width="600" height="200"></canvas>  <div class="music-player">
     <div class="music-title" id="trackTitle">Sweet</div>
     <div class="controls">
+      <button onclick="prevTrack()">⏮</button>
       <button onclick="togglePlayPause()" id="playPauseBtn">⏸</button>
+      <button onclick="nextTrack()">⏭</button>
     </div>
     <div class="progress-container" onclick="seek(event)">
       <div class="progress" id="progress"></div>
     </div>
-    <div class="lyrics" id="lyricsDisplay"></div>
+    <div class="lyrics-box" id="lyricsBox"></div>
   </div><button class="btn" onclick="showMessage()">Show a sweet message</button> <button class="note-btn" onclick="showModal()">A Note Just for You 💌</button>
 
-  <div class="message" id="messageBox"></div><audio id="audio" autoplay src="https://drive.google.com/uc?export=download&id=1p0n7LBplKl42TE0ZBfQ9e13TBMvTzdar"></audio>
-
-  <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
+  <div class="message" id="messageBox"></div>
+  <audio id="audio" crossorigin="anonymous"></audio>  <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center;">
     <div id="modalContent" style="background:#fff; color:#000; padding:1rem; border-radius:12px; max-width:400px; text-align:center;">
       Love, I know we don’t always say the deepest things out loud, but I hope you feel them every day.
-      You calm parts of me I didn’t even know were restless.
-      Being with you feels like how a song settles in your chest when you hear it for the first time and somehow already know the words.
-      I don’t need big gestures, or what, I just need you. Even your silence feels like home to me.
-      <br><br>– from me, always
-      <br><br><button onclick="closeModal()" class="close-btn">🫶 Got it</button>
-    </div>
-  </div>  <script>
-    const lyrics = [
-      ["0", "Watching the video that you sent me"],
-      ["6", "The one where you're showering with wet hair dripping"],
-      ["12", "You know that I'm obsessed with your body"],
-      ["17", "But it's the way you smile that does it for me"],
-      ["23", "It's so sweet, knowing that you love me"],
-      ["28", "Though we don't need to say it to each other, sweet"],
-      ["34", "Knowing that I love you, and running my fingers through your hair"],
-      ["40", "It's so sweet"],
-      ["46", "Watching the video where you're lying"],
-      ["51", "In your red lingerie ten times nightly"],
-      ["57", "You know I think your skin's the perfect color"],
-      ["63", "But it's always your eyes that pull me under"],
-      ["70", "It's so sweet knowing that you love me"],
-      ["76", "Though we don't need to say it to each other, sweet"],
-      ["82", "Knowing that I love you, and running my fingers through your hair"],
-      ["87", "It's so sweet"],
-      ["95", "And I would gladly break it"],
-      ["98", "I would gladly break my heart for you"],
-      ["104", "It's so sweet knowing that you love me"],
-      ["110", "Though we don't need to say it to each other, sweet"],
-      ["117", "Knowing that I love you, and running my fingers through your hair"],
-      ["122", "It's so sweet"]
-    ];
+      You calm parts of me I didn’t even know were restless.Being with you feels like how a song settles in your chest when you hear it for the first time and somehow already know the words.
+  
+  I don’t need big gestures, or what, I just need you. Even your silence feels like home to me.
+  <br><br>– from me, always
+  <br><br><button onclick="closeModal()" class="close-btn">🫶 Got it</button>
+</div>
 
+  </div>  <script>
     const messages = [
       "“I’ve been the archer, I’ve been the prey — who could ever leave me, darling?” – The Archer",
       "“All these people think love’s for show — but I would die for you in secret.” – Peace",
@@ -198,19 +183,62 @@
       document.getElementById("modalOverlay").style.display = "none";
     }
 
+    const lyrics = `
+Watching the video that you sent me
+The one where you're showering with wet hair dripping
+You know that I'm obsessed with your body
+But it's the way you smile that does it for me
+It's so sweet, knowing that you love me
+Though we don't need to say it to each other, sweet
+Knowing that I love you, and running my fingers through your hair
+It's so sweet
+Watching the video where you're lying
+In your red lingerie ten times nightly
+You know I think your skin's the perfect color
+But it's always your eyes that pull me under
+It's so sweet knowing that you love me
+Though we don't need to say it to each other, sweet
+Knowing that I love you, and running my fingers through your hair
+It's so sweet
+And I would gladly break it
+I would gladly break my heart for you
+And I would gladly break it
+I would gladly break my heart for you
+It's so sweet knowing that you love me
+Though we don't need to say it to each other, sweet
+Knowing that I love you, and running my fingers through your hair
+It's so sweet`;
+
+    const lyricsLines = lyrics.split('\n');
     const audio = document.getElementById("audio");
-    const playBtn = document.getElementById("playPauseBtn");
+    const title = document.getElementById("trackTitle");
     const progress = document.getElementById("progress");
-    const lyricsDisplay = document.getElementById("lyricsDisplay");
+    const btn = document.getElementById("playPauseBtn");
+    const lyricsBox = document.getElementById("lyricsBox");
+
+    const directLink = "https://docs.google.com/uc?export=download&id=1p0n7LBplKl42TE0ZBfQ9e13TBMvTzdar";
+    audio.src = directLink;
+
+    let currentLine = 0;
     let isPlaying = true;
+
+    function displayLyrics() {
+      const secondsPerLine = audio.duration / lyricsLines.length;
+      const currentTime = audio.currentTime;
+      const index = Math.floor(currentTime / secondsPerLine);
+      if (index !== currentLine && index < lyricsLines.length) {
+        currentLine = index;
+        lyricsBox.textContent = lyricsLines[currentLine];
+      }
+    }
 
     function togglePlayPause() {
       if (audio.paused) {
         audio.play();
-        playBtn.textContent = "⏸";
+        btn.textContent = "⏸";
       } else {
         audio.pause();
-        playBtn.textContent = "▶";
+        btn.textContent = "▶";
       }
     }
 
@@ -221,16 +249,19 @@
       audio.currentTime = (clickX / width) * duration;
     }
 
+    function nextTrack() {
+      // For now, just restart
+      audio.currentTime = 0;
+    }
+
+    function prevTrack() {
+      audio.currentTime = 0;
+    }
+
     audio.addEventListener("timeupdate", () => {
-      const current = audio.currentTime;
-      const percent = (current / audio.duration) * 100;
+      const percent = (audio.currentTime / audio.duration) * 100;
       progress.style.width = percent + "%";
-      for (let i = lyrics.length - 1; i >= 0; i--) {
-        if (current >= parseFloat(lyrics[i][0])) {
-          lyricsDisplay.textContent = lyrics[i][1];
-          break;
-        }
-      }
+      displayLyrics();
     });
 
     const canvas = document.getElementById("wave");
